@@ -7,10 +7,16 @@ using System;
 public class PaullozDotInk : EditorPlugin
 {
     private Dictionary settings = new Dictionary() {
-        {"inklecate_path", new Dictionary() {
+        {"inklecate_path_mac", new Dictionary() {
             { "type", Variant.Type.String },
             { "hint", PropertyHint.File },
-            { "hint_string", OS.GetName() == "OSX" ? "" : "*.exe" },
+            { "hint_string", "" },
+            { "default", "" }
+        }},
+        {"inklecate_path_windows", new Dictionary() {
+            { "type", Variant.Type.String },
+            { "hint", PropertyHint.File },
+            { "hint_string", "*.exe" },
             { "default", "" }
         }},
         {"marshall_state_variables", new Dictionary() {

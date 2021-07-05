@@ -36,7 +36,16 @@ func import(source_file, save_path, options, r_platform_variants, r_gen_files):
             return import_from_json(source_file, save_path, options)
 
 func import_from_ink(source_file, save_path, options):
-    var setting = "ink/inklecate_path"
+    var setting : String
+    match OS.get_name():
+        "OSX":
+            setting = "ink/inklecate_path_mac"
+        "X11":
+            setting = "ink/inklecate_path_windows"
+        "Windows":
+            setting = "ink/inklecate_path_windows"
+        _:
+            return ERR_COMPILATION_FAILED
     if ProjectSettings.has_setting(setting) and ProjectSettings.property_can_revert(setting):
         var inklecate = ProjectSettings.globalize_path(ProjectSettings.get_setting(setting))
         var new_file = "%d.json" % int(randf() * 100000)
